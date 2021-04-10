@@ -1,0 +1,46 @@
+{
+  "name": "todo-manager-api",
+  "version": "1.0.0",
+  "description": "Todo manager backend service.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rm -rf ./dist && tsc -p tsconfig-build.json",
+    "coverage": "jest --coverage",
+    "dev": "ts-node-dev --respawn --transpile-only --inspect -- ./src/index.ts",
+    "lint": "eslint --fix --ext .js,.ts,.json .",
+    "migrate:create": "./node_modules/knex/bin/cli.js migrate:make -x ts $MIGRATE_NAME --env local",
+    "migrate:up": "./node_modules/knex/bin/cli.js migrate:latest --env local",
+    "prestart": "npm run build",
+    "start": "node dist/src/index.js",
+    "test": "jest",
+    "test:watch": "npm run test -- --verbose --watch"
+  },
+  "author": "Olavio Lacerda",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "@types/knex": "^0.16.1",
+    "@types/node": "^14.14.37",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.4",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.5.4",
+    "ts-node": "^9.1.1",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "knex": "^0.95.4",
+    "mysql2": "^2.2.5",
+    "tslog": "^3.1.2"
+  }
+}
