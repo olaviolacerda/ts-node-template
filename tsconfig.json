@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "commonjs",
+    "target": "es6",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/**/*.ts",
+    "src/**/**/*.d.ts",
+    "migrations/*.ts"
+  ],
+  "exclude": ["dist", "node_modules"]
+}

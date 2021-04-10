@@ -1,0 +1,5 @@
+package*
+dist
+node_modules
+coverage
+.env

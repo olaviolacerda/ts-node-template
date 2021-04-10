@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  db:
+    image: mysql
+    container_name: todo_management_db
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_DATABASE=${DB_SCHEMA}
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306
+    expose:
+      - "3306"
+    security_opt:
+      - seccomp:unconfined
+
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: todo_manager_app
+    environment:
+      - DB_HOST=db
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_SCHEMA=${DB_SCHEMA}
+      - DB_DATABASE=${DB_SCHEMA}
+      - SERVER_PORT=3000
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
